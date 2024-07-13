@@ -1,1 +1,1 @@
-enum RequestStatus { init, loading, success, failure }
+enum ScreenStatus { init, loading, success, failure }

@@ -1,12 +1,12 @@
-class ProductsModel {
+class ProductModel {
   List<Products>? products;
   int? total;
   int? skip;
   int? limit;
 
-  ProductsModel({this.products, this.total, this.skip, this.limit});
+  ProductModel({this.products, this.total, this.skip, this.limit});
 
-  ProductsModel.fromJson(Map<String, dynamic> json) {
+  ProductModel.fromJson(Map<String, dynamic> json) {
     if (json['products'] != null) {
       products = <Products>[];
       json['products'].forEach((v) {
