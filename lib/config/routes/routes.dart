@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../features/home/presentation/pages/home.dart';
+import '../../features/home/presentation/pages/home_screen.dart';
 
 class RoutesName {
   static const String home = "/";
