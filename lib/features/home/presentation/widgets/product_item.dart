@@ -28,7 +28,7 @@ class ProductItem extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15.r),
-            border: Border.all(width: 2.w, color: Colors.blueGrey),
+            border: Border.all(width: 2.w, color: AppColors.mainColor),
           ),
           child: Column(
             children: [
@@ -37,13 +37,13 @@ class ProductItem extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.r),
+                        borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: CachedNetworkImage(
-                        imageUrl: product?.images?.toString() ?? "",
-                        fit: BoxFit.fill,
+                        imageUrl: product!.images![0].toString(),
+                        filterQuality: FilterQuality.high,
+                        fit: BoxFit.contain,
                         width: double.infinity,
-                        height: 191.h,
                         errorWidget: (context, url, error) => const Center(
                             child: Icon(Icons.error_outline, size: 40)),
                       ),
@@ -64,7 +64,6 @@ class ProductItem extends StatelessWidget {
                       SizedBox(height: 8.h),
                       _buildPriceRow(product),
                       SizedBox(height: 5.h),
-                      const Spacer(),
                       _buildReviewRow(product),
                     ],
                   ),
@@ -101,7 +100,7 @@ class ProductItem extends StatelessWidget {
   Widget _buildTitle(Products? product) {
     return Text(
       product?.title ?? "",
-      maxLines: 2,
+      maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
     );
@@ -120,11 +119,12 @@ class ProductItem extends StatelessWidget {
     return Row(
       children: [
         Text("EGP ${product?.price.toString() ?? ""}",
-            style: TextStyle(fontSize: 14.sp)),
+            style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold)),
         SizedBox(width: 16.w),
-        Text("EGP 1200",
+        Text("SALE ${product?.discountPercentage ?? ""}%",
             style: TextStyle(
-                fontSize: 14.sp, decoration: TextDecoration.lineThrough)),
+              fontSize: 10.sp,
+            )),
       ],
     );
   }
@@ -134,11 +134,11 @@ class ProductItem extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 13.h),
       child: Row(
         children: [
-          const Text("Review"),
+          const Text("Review "),
           SizedBox(width: 4.w),
           Text(product?.rating.toString() ?? ""),
           SizedBox(width: 4.w),
-          const Icon(Icons.star, color: Colors.yellow),
+          const Icon(Icons.star_rounded, color: Colors.yellow),
           const Spacer(),
           Container(
             padding: EdgeInsets.all(5.w.h),

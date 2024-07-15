@@ -21,13 +21,15 @@ class Products extends StatelessWidget {
           child: GridView.builder(
             itemCount: state.productModel?.products?.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                childAspectRatio: (192 / 250),
+                childAspectRatio: (205.h / 240.w),
                 crossAxisCount: 2,
                 mainAxisSpacing: 16.h,
                 crossAxisSpacing: 16.w),
             itemBuilder: (context, index) {
               return ProductItem(
-                  productModel: state.productModel, index: index);
+                productModel: state.productModel,
+                index: index,
+              );
             },
           ),
         );

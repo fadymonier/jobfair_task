@@ -16,7 +16,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<GetProductsEvent>((event, emit) async {
       emit(state.copyWith(getProductsStatus: RequestStatus.loading));
 
-      var result = await getProductsUseCase();
+      var result = await getProductsUseCase.call();
 
       result.fold((l) {
         emit(state.copyWith(
