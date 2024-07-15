@@ -19,7 +19,9 @@ class ProductItem extends StatelessWidget {
     var product = productModel?.products?[index];
 
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        // Handle tap
+      },
       child: Padding(
         padding: EdgeInsets.only(
             left: index.isEven ? 16.w : 0, right: index.isOdd ? 16.w : 0),
@@ -38,12 +40,12 @@ class ProductItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15.r),
                       ),
                       child: CachedNetworkImage(
-                        imageUrl: product?.images?.first ?? "image",
+                        imageUrl: product?.images?.toString() ?? "",
                         fit: BoxFit.fill,
                         width: double.infinity,
                         height: 191.h,
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error_outline, size: 40),
+                        errorWidget: (context, url, error) => const Center(
+                            child: Icon(Icons.error_outline, size: 40)),
                       ),
                     ),
                     _buildFavoriteIcon(),
@@ -98,7 +100,7 @@ class ProductItem extends StatelessWidget {
 
   Widget _buildTitle(Products? product) {
     return Text(
-      product?.title ?? "title",
+      product?.title ?? "",
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
@@ -107,7 +109,7 @@ class ProductItem extends StatelessWidget {
 
   Widget _buildDescription(Products? product) {
     return Text(
-      product?.description ?? "description",
+      product?.description ?? "",
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(fontSize: 14.sp, color: Colors.grey),
@@ -117,7 +119,7 @@ class ProductItem extends StatelessWidget {
   Widget _buildPriceRow(Products? product) {
     return Row(
       children: [
-        Text("EGP ${product?.price.toString() ?? "price"}",
+        Text("EGP ${product?.price.toString() ?? ""}",
             style: TextStyle(fontSize: 14.sp)),
         SizedBox(width: 16.w),
         Text("EGP 1200",
@@ -134,7 +136,7 @@ class ProductItem extends StatelessWidget {
         children: [
           const Text("Review"),
           SizedBox(width: 4.w),
-          Text(product?.rating.toString() ?? "rating"),
+          Text(product?.rating.toString() ?? ""),
           SizedBox(width: 4.w),
           const Icon(Icons.star, color: Colors.yellow),
           const Spacer(),
